@@ -30,6 +30,17 @@ describe('chopchop', function () {
       })
     })
 
+    it('defaults to opts.defaultLimit', function (done) {
+      var req = {
+        query: {}
+      }
+
+      chopchop({defaultLimit: 12})(req, null, function () {
+        req.paging.limit.should.equal(12)
+        done()
+      })
+    })
+
     it('parses skip', function (done) {
       var req = {
         query: {

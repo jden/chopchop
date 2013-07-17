@@ -21,8 +21,8 @@ var paged = function (opts) {
       maxLimit: opts.maxLimit
     }
     paging.skip = bound(req.query.skip, 0, Infinity, 0)
-    paging.limit = bound(req.query.limit, 1, opts.maxLimit, opts.limit)
-    paging.pageNumber = (paging.skip ? Math.floor(paging.limit) : 0) + 1
+    paging.limit = bound(req.query.limit, 1, opts.maxLimit, opts.defaultLimit)
+    paging.pageNumber = (paging.skip ? Math.floor(paging.defaultLimit) : 0) + 1
 
     paging.sort = opts.sortable.indexOf(req.query.sort) !== -1
                     ? req.query.sort
