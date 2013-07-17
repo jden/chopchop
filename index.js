@@ -8,12 +8,12 @@ function bound(num, min, max, def) {
 
 var paged = function (opts) {
   opts = opts || {}
-  opts.limit = intOrDefault(opts.limit, 10)
+  opts.defaultLimit = intOrDefault(opts.defaultLimit, 10)
   opts.maxLimit = intOrDefault(opts.maxLimit, 50)
   opts.sortable = Array.isArray(opts.sortable)
                     ? opts.sortable
                     : []
-  // opts.sortDefault
+  // opts.defaultSort
 
   return function (req, res, next) {
     var paging = {
@@ -26,7 +26,7 @@ var paged = function (opts) {
 
     paging.sort = opts.sortable.indexOf(req.query.sort) !== -1
                     ? req.query.sort
-                    : opts.sortDefault
+                    : opts.defaultSort
     paging.sortOrder = req.query.sortOrder === 'desc'
                     ? -1
                     : 1
